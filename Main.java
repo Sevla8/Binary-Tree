@@ -30,7 +30,7 @@ class Main {
 		PanelTree panelTree = new PanelTree(tree);
 		System.out.println(panelTree.tree.countPlaceGraphique(panelTree.getFontMetrics(), 0));*/
 
-		// affichage nodeDisplayInfo
+		// affichage arbre
 		JFrame frame = new JFrame();
 		frame.setSize(500, 500);
 		frame.setLocation(100, 100);
@@ -45,7 +45,7 @@ class Main {
 		// tmp.add(new Node(998888889), new Node(777));
 		// tmp3.add(tmp4, null);
 		// tmp2.add(tmp, tmp3);
-		tree.add(new Node(998888889), new Node(777));
+		tree.add(new Node(9), new Node(777));
 		PanelTree panelTree = new PanelTree(tree);
 		panelTree.setOpaque(true);
 		frame.add(panelTree);

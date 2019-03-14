@@ -4,8 +4,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 class PanelTree extends JPanel {
-	private FontMetrics fm;
 	public Node tree;
+	private FontMetrics fm;
 	private int marge = 0;
 	private int delta = 30;
 	private int space = 5;
@@ -22,7 +22,7 @@ class PanelTree extends JPanel {
 		int width = this.fm.stringWidth(text);
 		int height = this.fm.getHeight();
 		g.drawString(text, x-width/2, y+height/2);
-		g.drawArc(x-width/2, y-width/2, width, width, 0, 360);
+		g.drawOval(x-width/2, y-height/2, width, height);
 	}
 
 	public void paintComponentRec(Graphics g, NodeDisplay nodeDisplay) {
@@ -66,7 +66,7 @@ class PanelTree extends JPanel {
 		if (tree != null) {
 			if (tree.nL == null)
 				return getDisplayInfoRec(tree, this.start, this.start);
-			return getDisplayInfoRec(tree, tree.countPlaceGraphique(this.fm, this.marge), this.start);
+			return getDisplayInfoRec(tree, tree.nL.countPlaceGraphique(this.fm, this.marge), this.start);
 		}
 		return null;
 	}
