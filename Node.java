@@ -1,40 +1,47 @@
 import java.awt.FontMetrics;
 
 class Node {
-	int elt;
-	Node nL;
-	Node nR;
+	public int val;
+	public Node nodeLeft;
+	public Node nodeRight;
 
-	Node(int elt) {
-		this.elt = elt;
-		this.nL = null;
-		this.nR = null;
+	public Node(int val) {
+		this.val = val;
+		this.nodeLeft = null;
+		this.nodeRight = null;
+	}
+	public Node(int val, Node nodeLeft, Node nodeRight) {
+		this.val = val;
+		this.nodeLeft = nodeLeft;
+		this.nodeRight = nodeRight;
 	}
 
-	public void add(Node nL, Node nR) {
-		this.nL = nL;
-		this.nR = nR;
+	public void add(Node nodeLeft, Node nodeRight) {
+		this.nodeLeft = nodeLeft;
+		this.nodeRight = nodeRight;
+	}
+
+	public int sizeValue(FontMetrics fm) {
+		return fm.stringWidth(this.val+"");
 	}
 
 	public int countNode() {
 		int count = 1;
-		if (this.nL == null && this.nR == null)
+		if (this.nodeLeft == null && this.nodeRight == null)
 			return count;
-		if (this.nL == null)
-			return count + this.nR.countNode();
-		if (this.nR == null)
-			return count + this.nL.countNode();
-		return count + this.nR.countNode() + this.nL.countNode();
+		if (this.nodeLeft == null)
+			return count + this.nodeRight.countNode();
+		if (this.nodeRight == null)
+			return count + this.nodeLeft.countNode();
+		return count + this.nodeRight.countNode() + this.nodeLeft.countNode();
 	} 
 
-	public int countPlaceGraphique(FontMetrics fm, int marge) {
-		int size = fm.stringWidth(this.elt+"");
-		if (this.nL == null && this.nR == null)
-			return size;
-		if (this.nL == null)
-			return size + this.nR.countPlaceGraphique(fm, marge) + marge;
-		if (this.nR == null)
-			return size + this.nL.countPlaceGraphique(fm, marge) + marge;
-		return size + this.nL.countPlaceGraphique(fm, marge) + this.nR.countPlaceGraphique(fm, marge) + marge;
+	public int countPlaceGraphique(FontMetrics fm, int space) {
+		int size = sizeValue(fm);
+		if (this.nodeLeft != null)
+			size +=  this.nodeLeft.countPlaceGraphique(fm, space);
+		if (this.nodeRight != null)
+			size +=  this.nodeRight.countPlaceGraphique(fm, space);
+		return size + space;
 	}
 }
