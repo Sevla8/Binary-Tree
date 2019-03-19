@@ -66,21 +66,19 @@ class PanelTree extends JPanel {
 			nodeDisplay.filsGauche = null;
 		else {
 			int sG;
-			if (tree.nodeLeft.nodeRight == null)
-				sG = tree.nodeLeft.sizeValue(this.fm)/2;
-			else 
-				sG = tree.nodeLeft.nodeRight.countPlaceGraphique(this.fm, this.space);
-			nodeDisplay.filsGauche = this.getDisplayInfoRec(tree.nodeLeft, xNode-sG-this.space, yNode+this.delta);
+			sG = tree.sizeValue(this.fm)/2+this.space/2 + tree.nodeLeft.sizeValue(this.fm)/2+this.space/2;
+			if (tree.nodeLeft.nodeRight != null)				
+				sG += tree.nodeLeft.nodeRight.countPlaceGraphique(this.fm, this.space);
+			nodeDisplay.filsGauche = this.getDisplayInfoRec(tree.nodeLeft, xNode-sG, yNode+this.delta);
 		}
 		if (tree.nodeRight == null)
 			nodeDisplay.filsDroit = null;
 		else {
 			int sD;
-			if (tree.nodeRight.nodeLeft == null)
-				sD = tree.nodeRight.sizeValue(this.fm)/2;
-			else
-				sD = tree.nodeRight.nodeLeft.countPlaceGraphique(this.fm, this.space);
-			nodeDisplay.filsDroit = this.getDisplayInfoRec(tree.nodeRight, xNode+sD+this.space, yNode+this.delta);
+			sD = tree.sizeValue(this.fm)/2+this.space/2 + tree.nodeRight.sizeValue(this.fm)/2+this.space/2;
+			if (tree.nodeRight.nodeLeft != null)
+				sD += tree.nodeRight.nodeLeft.countPlaceGraphique(this.fm, this.space);
+			nodeDisplay.filsDroit = this.getDisplayInfoRec(tree.nodeRight, xNode+sD, yNode+this.delta);
 		}
 		return nodeDisplay;
 	}
@@ -89,7 +87,7 @@ class PanelTree extends JPanel {
 		NodeDisplay nodeDisplay = new NodeDisplay();
 		if (tree != null) {
 			if (tree.nodeLeft != null)
-				nodeDisplay = getDisplayInfoRec(tree, tree.nodeLeft.countPlaceGraphique(this.fm, this.space), this.delta);
+				nodeDisplay = getDisplayInfoRec(tree, tree.nodeLeft.countPlaceGraphique(this.fm, this.space)+tree.sizeValue(this.fm)/2+this.space/2, this.delta);
 			else
 				nodeDisplay = getDisplayInfoRec(tree, tree.sizeValue(this.fm)/2+this.space, this.delta);
 			return nodeDisplay;

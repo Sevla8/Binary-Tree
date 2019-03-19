@@ -45,7 +45,7 @@ class Main {
 				new Node(23)));
 		System.out.println(root.countNode());*/
 
-		// affichage de la largeure necessaire
+		// affichage de la largeure nécéssaire
 		/*Node root = new Node(1, 
 			new Node(1,
 				new Node(1,
@@ -118,9 +118,6 @@ class Main {
 								new Node(32),
 								new Node(33))))),
 				new Node(23)));
-		// Node root = new Node(101, 
-		// 	new Node(22, new Node(40, new Node(8321), new Node(922224)), new Node(5, new Node(224), new Node(3, new Node(22), new Node(43, new Node(22), new Node(43))))), 
-		// 	new Node(321209, new Node(6109, new Node(82367, new Node(20), new Node(13)), new Node(9097)), new Node(709)));	
 		PanelTree panelTree = new PanelTree(root);
 		panelTree.setOpaque(true);
 		frame.add(panelTree);
